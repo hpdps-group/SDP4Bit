@@ -252,5 +252,5 @@ Belows are all quantization arguments you may use on your case.
 - `--no-async-tensor-model-parallel-allreduce`
     - To overlap intra and inter node all-to-all, this should be enabled to avoid setting 
 ---
-**Note:** The implementation of SDP4Bit is built upon the official [Nvidia Megatron-LM](https://github.com/NVIDIA/Megatron-LM) codebase, leveraging its optimized framework for large-scale language model training.
+**Note:** The implementation of SDP4Bit is built upon the official [Nvidia Megatron-LM](https://github.com/NVIDIA/Megatron-LM/commit/bd6f4ead41dac8aa8d50f46253630b7eba84bcdf), leveraging its optimized framework for large-scale language model training.
 
