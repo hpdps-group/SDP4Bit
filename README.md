@@ -1,5 +1,5 @@
 ﻿# SDP4Bit
-This repository is the official implement of paper **SDP4Bit: Toward 4-bit Communication Quantization in Sharded Data Parallelism for LLM Training**.
+This repository is the official implement of paper **[SDP4Bit: Toward 4-bit Communication Quantization in Sharded Data Parallelism for LLM Training](https://arxiv.org/abs/2410.15526)**.
 
 ## Overview
 SDP4Bit is a communication quantization strategy designed to reduce the overhead of large-scale distributed training in Sharded Data Parallelism (ShardedDP). By utilizing quantization on weight differences and two-level gradient smooth quantization, SDP4Bit reduces the communication of weights and gradients to nearly 4 bits without compromising accuracy. 
