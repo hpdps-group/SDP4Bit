@@ -254,3 +254,15 @@ Belows are all quantization arguments you may use on your case.
 ---
 **Note:** The implementation of SDP4Bit is built upon the official [Nvidia Megatron-LM](https://github.com/NVIDIA/Megatron-LM/commit/bd6f4ead41dac8aa8d50f46253630b7eba84bcdf), leveraging its optimized framework for large-scale language model training.
 
+
+## Citation
+
+If you think this work is helpful, please kindly cite as:
+
+```bibtex
+@inproceedings{jiasdp4bit,
+  title={SDP4Bit: Toward 4-bit Communication Quantization in Sharded Data Parallelism for LLM Training},
+  author={Jia, Jinda and Xie, Cong and Lu, Hanlin and Wang, Daoce and Feng, Hao and Zhang, Chengming and Sun, Baixi and Lin, Haibin and Zhang, Zhi and Liu, Xin and others},
+  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems}
+}
+```
