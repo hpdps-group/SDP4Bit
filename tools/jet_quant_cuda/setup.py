@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2023-2024 Bytedance Ltd. and/or its affiliates 
 
 
@@ -33,8 +34,12 @@ nvcc_args = [
     '-gencode', 'arch=compute_80,code=sm_80',
     '-gencode', 'arch=compute_86,code=sm_86',
     '-gencode', 'arch=compute_90,code=sm_90',
+    '-ccbin', '/data/apps/gcc/12.2/bin/g++',
+
+
 ]
 
+# 指定 nvc++ 的路径
 source_files = [
     os.path.join(setup_dir, 'quantization', 'pt_binding.cpp'),
     os.path.join(setup_dir, 'quantization', 'swizzled_quantize.cu'),
@@ -57,9 +62,9 @@ class BuildExtensionForDebug(BuildExtension):
         try:
             super().run()
         except subprocess.CalledProcessError as e:
-            print(f"Compilation failed with exit code {e.returncode}")
+            # print(f"Compilation failed with exit code {e.returncode}")
             print(e.output.decode())
-        print(f"Successfully complied quantization module")
+        # print(f"Successfully complied quantization module")
 
 setup(
     name='quantization_cuda',

@@ -7,8 +7,8 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 GPUS_PER_NODE=1
 # Change for multinode config
 #MASTER_ADDR=10.254.128.14/
-MASTER_PORT=6000
-NUM_NODES=1
+MASTER_PORT=6233
+NUM_NODES=4
 #NODE_RANK=0
 WORLD_SIZE=$(($GPUS_PER_NODE*$NUM_NODES))
 
@@ -22,7 +22,7 @@ MERGE_FILE="/HOME/scw6doz/run/zly/dataset/wikitext/V1_0/merges.txt"
 #<Specify path to file>/gpt2-merges.txt
 DATA_PATH="/HOME/scw6doz/run/zly/dataset/wikitext/V1_0/meg-gpt2_text_document"
 #<Specify path and file prefix>_text_document
-TENSORBOARD_DIR="/HOME/scw6doz/run/wyf/Megatron_2025/wyf_donot_upload/log"
+TENSORBOARD_DIR="//HOME/scw6doz/run/wyf/SDP4Bit/wyf_profile/log"
 DISTRIBUTED_ARGS=(
     --nproc_per_node $GPUS_PER_NODE 
     --nnodes $NUM_NODES 
@@ -40,7 +40,7 @@ GPT_ARGS="
     --micro-batch-size 4 \
     --global-batch-size 32 \
     --lr 0.00015 \
-    --train-iters 500000 \
+    --train-iters 200 \
     --lr-decay-iters 320000 \
     --lr-decay-style cosine \
     --min-lr 1.0e-5 \
@@ -64,11 +64,11 @@ OUTPUT_ARGS="
     --eval-iters 10
 "
 
-torchrun ${DISTRIBUTED_ARGS[@]} pretrain_gpt.py \
+torchrun ${DISTRIBUTED_ARGS[@]} /HOME/scw6doz/run/wyf/SDP4Bit/pretrain_gpt.py \
     $GPT_ARGS \
     $DATA_ARGS \
     $OUTPUT_ARGS \
-    --save $CHECKPOINT_PATH \
-    --load $CHECKPOINT_PATH \
-    --use-pytorch-profiler \
-    --tensorboard-dir ${TENSORBOARD_DIR}"
+    --save $CHECKPOINT_PATH 
+    # --load $CHECKPOINT_PATH \
+    # --use-pytorch-profiler \
+    # --tensorboard-dir ${TENSORBOARD_DIR}"
