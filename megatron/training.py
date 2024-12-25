@@ -180,6 +180,7 @@ def pretrain(train_valid_test_dataset_provider,
     args = get_args()
     timers = get_timers()
 
+
     if args.log_progress:
         append_to_progress_log("Starting job")
 
@@ -866,6 +867,10 @@ def train(forward_step_func, model, optimizer, opt_param_scheduler,
 
     # Iterations.
     iteration = args.iteration
+ 
+        # data_capture_save_dir
+
+
     num_floating_point_operations_so_far = args.num_floating_point_operations_so_far
 
     # Setup some training config params
@@ -963,6 +968,15 @@ def train(forward_step_func, model, optimizer, opt_param_scheduler,
         
         # 套一层,然后添加缩进
         with torch.profiler.record_function(f"label_iteration_{iteration}"):
+               # Set ENV_VALUE for data caputer  tast
+            # 环境变量只能是str 不能是int 到时候再解析 暂时全部rank都取
+            if args.data_capture:
+                os.environ["DATA_CAPTURE"] = "1"  
+                os.environ["DATA_CAPTURE_STEP_START"] = str(args.data_capture_step_start)
+                os.environ["DATA_CAPTURE_STEP_END"] = str(args.data_capture_step_end)
+                os.environ["DATA_CAPTURE_SAVE_DIR"] = "/HOME/scw6doz/run/wyf/SDP4Bit/wyf_profile/12_23_meeting/data_value/1N4G_test"
+                # str(args.data_capture_save_dir)
+                os.environ["DATA_CAPTURE_ITERATION"] = str(iteration)
             loss_dict, skipped_iter, grad_norm, num_zeros_in_grad = \
                 train_step(forward_step_func,
                         train_data_iterator,

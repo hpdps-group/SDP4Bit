@@ -34,7 +34,7 @@ export NCCL_IB_GID_INDEX=3
 
 
 
-export NODE_RANK=3
+export NODE_RANK=0
 ip addr show
 
-export MASTER_ADDR=10.254.16.8
+export MASTER_ADDR=10.254.149.83

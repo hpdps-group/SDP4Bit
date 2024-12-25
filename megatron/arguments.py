@@ -973,6 +973,24 @@ def _add_training_args(parser):
                        'garbage collection at the start and the end of each '
                        'evaluation run.', dest='manual_gc_eval')
 
+    # 数据抓取相关参数
+    group.add_argument('--data-capture', action='store_true',
+                       help='Enable data capture. This flag activates the data capture functionality.')
+    group.add_argument('--data-capture-step-start', type=int, default=10,
+                       help='Global step to start capturing data.')
+    group.add_argument('--data-capture-step-end', type=int, default=12,
+                       help='Global step to stop capturing data.')
+    group.add_argument('--data-capture-ranks', nargs='+', type=int, default=[0],
+                       help='Global ranks to capture data from. Specify one or more rank IDs.')
+    group.add_argument('--data-capture-type', nargs='+', type=str, 
+                       default=['local_gradient_original'],
+                       help=('Specify the types of data to capture. Available options are: '
+                             '"local_gradient_original" (original local gradient), '
+                             '"local_gradient_hadamard" (Hadamard-transformed gradient), '
+                             '"local_gradient_hadamard_quant" (Hadamard-transformed and quantized gradient).'))
+    group.add_argument('--data-capture—save-dir', type=str, default=None,
+                        help=('captured data saved in this path: '))
+
     return parser
 
 
